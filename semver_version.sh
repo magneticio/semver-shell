@@ -38,7 +38,7 @@ get_incremented_semantic_version () {
   then
         current_version="0.0.0"
   fi
-  local semantic_version=$(increment_semantic_version $1 $2)
+  local semantic_version=$(increment_semantic_version $increment_type $current_version)
   echo "${version_prefix}$semantic_version"
 }
 
