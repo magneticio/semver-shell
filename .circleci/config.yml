@@ -29,11 +29,7 @@ workflows:
   version: 2
   main:
     jobs:
-      - build:
-          filters:
-            branches:
-              ignore:
-                - master
+      - build
       - release:
           requires:
             - build
