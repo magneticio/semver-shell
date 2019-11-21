@@ -5,6 +5,7 @@ jobs:
       - image: circleci/golang:1.12.3
     steps:
       - checkout
+      - run: git config -l
       - run: mkdir -p ./artifacts
       - run: cp ./semver_version.sh ./artifacts/./semver_version.sh
       - run: ./semver_version.sh -l text -f ./artifacts/version.txt -o none
