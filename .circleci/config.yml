@@ -19,6 +19,7 @@ jobs:
     docker:
       - image: cibuilds/github:0.12
     steps:
+      - checkout
       - add_ssh_keys
       - attach_workspace:
           at: ./artifacts
