@@ -10,9 +10,6 @@ jobs:
       - run: git config user.password ${GITHUB_TOKEN}
       - run: git show
       - run: git tag -l
-      - run: echo "# test" >> semver_version.sh
-      - run: git commit --all -m "test"
-      - run: git push
       - run: mkdir -p ./artifacts
       - run: cp ./semver_version.sh ./artifacts/./semver_version.sh
       - run: ./semver_version.sh -l text -f ./artifacts/version.txt -o none
@@ -24,9 +21,10 @@ jobs:
     docker:
       - image: cibuilds/github:0.12
     steps:
+      - add_ssh_keys
       - attach_workspace:
           at: ./artifacts
-      - run: ./semver_version.sh -l text -f ./artifacts/version.txt
+      - run: ./artifacts/semver_version.sh -l text -f ./artifacts/version.txt
       - run:
           name: "Publish Release on GitHub"
           command: |
