@@ -65,8 +65,8 @@ set_semantic_version_to_git () {
 }
 
 get_increment_semantic_type_from_git() {
-  local latest_commit_message=$(get_commit_message_from_git)
-  echo $(get_increment_semantic_type_from_string $latest_commit_message)
+  local latest_commit_message="$(get_commit_message_from_git)"
+  echo $(get_increment_semantic_type_from_string "$latest_commit_message")
 }
 
 get_release_message_from_git() {
@@ -79,7 +79,7 @@ get_commit_message_from_git() {
 }
 
 get_increment_semantic_type_from_string() {
-  local message=$1
+  local message="$1"
   if [[ $message =~ ^(major|MAJOR): ]]; then
       echo "major"
   elif [[ $message =~ ^(minor|MINOR): ]]; then
