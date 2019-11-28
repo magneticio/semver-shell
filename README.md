@@ -24,3 +24,5 @@ Read version from git tag and update git tag and print version to a go package n
 ```shell
 $ ./semver_version.sh -l go -f ./semantic_version/version.go
 ```
+
+...
