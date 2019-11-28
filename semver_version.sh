@@ -95,6 +95,8 @@ get_release_message_from_string() {
       echo ${message#*:}
   elif [[ $message =~ ^(minor|MINOR): ]]; then
       echo ${message#*:}
+  elif [[ $message =~ ^(pacth|PATCH): ]]; then
+      echo ${message#*:}
   else
       echo $message
   fi
