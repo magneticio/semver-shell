@@ -54,14 +54,14 @@ get_semantic_version_from_git () {
 }
 
 set_semantic_version_to_git () {
-  local tag_version=$1
-  local tag_message=$2
+  local tag_version="$1"
+  local tag_message="$2"
   if [ -z "$tag_message" ]
   then
         tag_message="Release for version ${NEW_VERSION}"
   fi
-  git tag -a ${tag_version} -m "${tag_message}"
-  git push origin ${tag_version}
+  git tag -a "${tag_version}" -m "${tag_message}"
+  git push origin "${tag_version}"
 }
 
 get_increment_semantic_type_from_git() {
@@ -90,7 +90,7 @@ get_increment_semantic_type_from_string() {
 }
 
 get_release_message_from_string() {
-  local message=$1
+  local message="$1"
   if [[ $message =~ ^(major|MAJOR): ]]; then
       echo ${message#*:}
   elif [[ $message =~ ^(minor|MINOR): ]]; then
@@ -205,7 +205,7 @@ echo "New version will be $new_version with message: $version_message"
 
 case ${version_output} in
   git )
-    $(set_semantic_version_to_git $new_version $version_message)
+    $(set_semantic_version_to_git "$new_version" "$version_message")
     ;;
 esac
 
