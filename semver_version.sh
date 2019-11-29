@@ -70,8 +70,7 @@ get_increment_semantic_type_from_git() {
 }
 
 get_release_message_from_git() {
-  local latest_commit_message=$(get_commit_message_from_git)
-  echo $(get_release_message_from_string "$latest_commit_message")
+  echo $(get_commit_message_from_git)
 }
 
 get_commit_message_from_git() {
@@ -80,25 +79,12 @@ get_commit_message_from_git() {
 
 get_increment_semantic_type_from_string() {
   local message="$1"
-  if [[ $message =~ ^(major|MAJOR): ]]; then
+  if [[ $message == *"[major]"* ]]; then
       echo "major"
-  elif [[ $message =~ ^(minor|MINOR): ]]; then
+  elif [[ $message == *"[minor]"* ]]; then
       echo "minor"
   else
       echo "patch"
-  fi
-}
-
-get_release_message_from_string() {
-  local message="$1"
-  if [[ $message =~ ^(major|MAJOR): ]]; then
-      echo ${message#*:}
-  elif [[ $message =~ ^(minor|MINOR): ]]; then
-      echo ${message#*:}
-  elif [[ $message =~ ^(patch|PATCH): ]]; then
-      echo ${message#*:}
-  else
-      echo $message
   fi
 }
 
