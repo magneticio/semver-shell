@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 version_input="git"
 version_output="git"
 version_increment_type=""
